@@ -1,0 +1,184 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+
+
+
+127.0.0.1 yang.qumofang.net
+127.0.0.1 admin.qumofang.net
+
+127.0.0.1 thirdpart.qumofang.com
+127.0.0.1 m.thirdpart.qumofang.com
+127.0.0.1 authorize.qumofang.com
+
+127.0.0.1 m.yang.qumofang.net
+192.168.31.129 bd.qumofang.net
+
+
+ <!-- 弹窗 : 绑定 -->
+    <div class="modal fade" id="ModalBound">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button"></button>
+            <h4 class="modal-title">手机绑定</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline" id="newtag">
+              <label for="newtag">请输入手机号：</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="请输入手机号">
+                <span class="input-group-btn"><button class="btn btn-normal" type="button" ng-click="createTag()">验证码</button></span>
+                <input type="text" class="form-control" placeholder="请输入验证码">
+              </div>
+              <span style="color: red" ng-bind="errorTag"></span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal">确定</button>
+            <button class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="mobile" ng-if="(bound_type=='手机绑定')||(bound_type=='手机修改')">手机号：<input placeholder="手机号"  class="bound">&nbsp;&nbsp;<span style="color: red" ng-bind="errorShow"></span></p>
+          <p class="email" ng-if="(bound_type=='邮箱绑定')||(bound_type=='邮箱修改')">邮箱：<input placeholder="邮箱"   class="bound">&nbsp;&nbsp;<span style="color: red" ng-bind="errorShow"></span></p>
+
+
+	  //绑定类型弹出框
+            $scope.chooseType = function(boundType) {
+
+
+                if ("bound_mobile" == boundType) {
+                    $scope.bound_type="手机绑定";
+                    $scope.$apply(function(){
+                        $scope.bound_type="手机绑定";
+                    });
+                    $("#code").before("<p id='type'>手机号：<input type='text' id='content' ng-model='account'  placeholder='手机号'>&nbsp;&nbsp;<span style='color: red' ng-bind='errorShow'></span></p>");
+                }
+
+                if ("change_mobile" == boundType) {
+                    $scope.bound_type="手机修改";
+                    $("#code").before("<p id='type'>手机号：<input type='text' id='content' ng-model='account' placeholder='手机号'>&nbsp;&nbsp;<span style='color: red' ng-bind='errorShow'></span></p>");
+
+                }
+
+                if("bound_email" == boundType){
+                    $scope.bound_type="邮箱绑定";
+                    $("#code").before("<p id='type'>邮箱：<input type='text' id='content' ng-model='account' placeholder='邮箱'>&nbsp;&nbsp;<span style='color: red' ng-bind='errorShow'></span></p>");
+                }
+
+                if("change_email" == boundType){
+                    $scope.bound_type="邮箱修改";
+                    $("#code").before("<p id='type'>邮箱：<input type='text' id='content' ng-model='account' placeholder='邮箱'>&nbsp;&nbsp;<span style='color: red' ng-bind='errorShow'></span></p>");
+                }
+
+                var bound_account = $("#myModal");
+                var htmlContent = bound_account.html();
+
+                dialog({
+                    fixed: true,
+                    title: $scope.bound_type,
+                    width: '500px',
+                    height: '250px',
+                    content: htmlContent,
+                    okValue: '下一步',
+                    cancelValue: "取消",
+                    ok: function () {
+                        //callback();
+                        $scope.boundAccount;
+                        $("#type").remove();
+                        return true;
+                    },
+                    cancel: function () {
+                        $("#type").remove();
+                        return true;
+                    }
+                }).showModal();
+            }
+		http://192.168.31.129:3000/my/page
+		http://www.blogjava.net/rockblue1988/archive/2014/10/24/418994.html
+
+
+		--  127 新增俱乐部积分兑换比例表
+CREATE TABLE `travel_web_bonus_ratio` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_datetime` datetime DEFAULT NULL,
+  `creator_id` bigint(20) DEFAULT NULL,
+  `is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `modifier_id` bigint(20) DEFAULT NULL,
+  `modify_datetime` datetime DEFAULT NULL,
+  `record_update_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `club` tinyblob,
+  `ratio` int(11) NOT NULL DEFAULT '10',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+--  128 新增积分配置表
+CREATE TABLE `travel_web_bonus_config` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_datetime` datetime DEFAULT NULL,
+  `creator_id` bigint(20) DEFAULT NULL,
+  `is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `modifier_id` bigint(20) DEFAULT NULL,
+  `modify_datetime` datetime DEFAULT NULL,
+  `record_update_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `bonus` int(11) NOT NULL DEFAULT '10',
+  `channel` varchar(50) NOT NULL DEFAULT '',
+  `host_id` bigint(20) DEFAULT NULL,
+  `host_type` varchar(50) DEFAULT '',
+  `ratio` tinyblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf
+
+
+
+--  129 新增用户积分表
+
+CREATE TABLE `travel_web_bonus` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_datetime` datetime DEFAULT NULL,
+  `creator_id` bigint(20) DEFAULT NULL,
+  `is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `modifier_id` bigint(20) DEFAULT NULL,
+  `modify_datetime` datetime DEFAULT NULL,
+  `record_update_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `bonus` int(11) DEFAULT '0',
+  `channel` varchar(50) NOT NULL DEFAULT '',
+  `detail` varchar(50) DEFAULT '',
+  `exp_datetime` datetime DEFAULT NULL,
+  `host_id` bigint(20) DEFAULT NULL,
+  `host_type` varchar(50) DEFAULT '',
+  `is_enabled` bit(1) NOT NULL DEFAULT b'0',
+  `login` tinyblob,
+  `remark` varchar(50) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+An exception occurred processing JSP page /WEB-INF/views/admin/user/list_user.jsp at line 94 91: 92: 93: 94: 95: 96: 97: Stacktrace: 
+详情请咨询趣磨坊。 
+1+1=10
